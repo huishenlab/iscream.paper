@@ -1,0 +1,26 @@
+Package: iscream.paper
+Title: Produce the data and figures for the iscream manuscript
+Version: 0.0.0.9000
+Authors@R: 
+    person("James", "Eapen", , "james.eapen@vai.org", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-6016-3598"))
+Description: Contains the scripts used to produce the data and figures for the
+            iscream manuscript. Using this package with input data will run
+            benchmarks and generate the figures in the paper.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+    bench,
+    data.table,
+    dplyr,
+    ggplot2,
+    iscream,
+    patchwork,
+    tidyr,
+    GenomicRanges,
+    Rsamtools,
+    BSgenome.Hsapiens.UCSC.hg38,
+    rmarkdown
+

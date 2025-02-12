@@ -1,0 +1,88 @@
+title = "iscream manuscript code setup"
+
+[datasets.reference]
+cpg_islands.file = "data/references/cpgIslands.bed.gz"
+cpg_islands.url = "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/cpgIslandExt.txt.gz"
+
+genes.file = "data/references/genes.bed"
+
+dmrs.file = "data/references/canary_dmrs.bed"
+
+bsseq_sc_loci = "data/references/bsseq_sc_cpg_loci.Rds"
+bsseq_bulk_loci = "data/references/bsseq_bulk_cpg_loci.Rds"
+
+[datasets.wgbs]
+
+[datasets.wgbs.bulk]
+biscuit.canary = "data/wgbs/bulk/biscuit/canary"
+bismark.canary = "data/wgbs/bulk/bismark/canary"
+
+[datasets.wgbs.sc]
+biscuit.snmc = "data/wgbs/sc/biscuit/snmcseq2"
+bismark.snmc = "data/wgbs/sc/bismark/snmcseq2"
+
+[results.tabix]
+sc.data = "data/results/benchmarks/tabix_sc.csv"
+sc.figure = "data/results/figures/tabix_sc.pdf"
+
+bulk.data = "data/results/benchmarks/tabix_bulk.csv"
+bulk.figure = "data/results/figures/tabix_bulk.pdf"
+
+combined.data = "data/results/benchmarks/tabix_combined.csv"
+combined.figure = "data/results/figures/tabix_combined.pdf"
+
+[results.bsseq]
+sc.data = "data/results/benchmarks/bsseq_sc.csv"
+sc.figure = "data/results/figures/bsseq_sc.pdf"
+
+bulk.data = "data/results/benchmarks/bsseq_bulk.csv"
+bulk.figure = "data/results/figures/bsseq_bulk.pdf"
+
+combined.data = "data/results/benchmarks/bsseq_combined.csv"
+combined.figure = "data/results/figures/bsseq_combined.pdf"
+
+memory.sc.data = "data/results/benchmarks/mem_bsseq_sc.tsv"
+memory.sc.figure = "data/results/benchmarks/mem_bsseq_sc.pdf"
+
+[results.biscuiteer]
+sc.data = "data/results/benchmarks/biscuiteer_sc.csv"
+sc.figure = "data/results/figures/biscuiteer_sc.pdf"
+
+bulk.data = "data/results/benchmarks/biscuiteer_bulk.csv"
+bulk.figure = "data/results/figures/biscuiteer_bulk.pdf"
+
+combined.data = "data/results/benchmarks/biscuiteer_combined.csv"
+combined.figure = "data/results/figures/biscuiteer_combined.pdf"
+
+memory.sc.data = "data/results/benchmarks/mem_biscuiteer_sc.tsv"
+memory.sc.figure = "data/results/benchmarks/mem_biscuiteer_sc.pdf"
+
+[results.query_all]
+sc.data = "data/results/benchmarks/query_all_sc.csv"
+sc.figure = "data/results/figures/query_all_sc.pdf"
+
+bulk.data = "data/results/benchmarks/query_all_bulk.csv"
+bulk.figure = "data/results/figures/query_all_bulk.pdf"
+
+combined.data = "data/results/benchmarks/query_all_combined.csv"
+combined.figure = "data/results/figures/query_all_combined.pdf"
+
+memory.sc.data = "data/results/benchmarks/mem_query_all_sc.tsv"
+memory.sc.data_nobs = "data/results/benchmarks/mem_query_all_sc_nobs.tsv"
+memory.sc.figure = "data/results/figures/mem_query_all_sc.pdf"
+
+[results.summarize_regions]
+sc.data = "data/results/benchmarks/summarize_regions_sc.csv"
+sc.figure = "data/results/figures/summarize_regions_sc.pdf"
+
+bulk.data = "data/results/benchmarks/summarize_regions_bulk.csv"
+bulk.figure = "data/results/figures/summarize_regions_bulk.pdf"
+
+combined.data = "data/results/benchmarks/summarize_regions_combined.csv"
+combined.figure = "data/results/figures/summarize_regions_combined.pdf"
+
+memory.sc.data = "data/results/benchmarks/mem_summarize_regions_sc.tsv"
+memory.sc.figure = "data/results/figures/mem_summarize_regions_sc.pdf"
+
+[figures]
+fig1 = "data/results/figures/fig1.pdf"
