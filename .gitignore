@@ -1,0 +1,4 @@
+data/wgbs/*
+*.gz
+*.gz.*
+*.pdf
