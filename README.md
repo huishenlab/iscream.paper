@@ -101,8 +101,8 @@ parallel tabix -b 2 -e 3 {} ::: bismark/canary/*mergecg.bed.gz
 rename 's/.bed.gz/.cov.gz' bismark/canary/*mergecg.bed.gz
 
 # from data/wgbs/sc directory
-parallel pypy3 ../../../scripts/biscuit2cov.py {} '>' bismark/snmcseq2/{/.} ::: biscuit/canary/*.bed.gz
-parallel tabix -b 2 -e 3 {} ::: bismark/canary/*.bed.gz
+parallel pypy3 ../../../scripts/biscuit2cov.py {} '>' bismark/snmcseq2/{/.} ::: biscuit/snmcseq2/*.bed.gz
+parallel tabix -b 2 -e 3 {} ::: bismark/snmcseq2/*.bed.gz
 rename 's/.bed.gz/.cov.gz' bismark/snmcseq2/*.bed.gz
 ```
 
