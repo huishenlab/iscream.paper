@@ -90,18 +90,18 @@ WGBS BED files:
 
 For both these datasets, they can be converted to the bismark BEDgraph format
 using
-[`scripts/bed2cov.py`](https://github.com/huishenlab/iscream-paper/blob/main/inst/scripts/bed2cov.py).
+[`scripts/biscuit2cov.py`](https://github.com/huishenlab/iscream-paper/blob/main/inst/scripts/biscuit2cov.py).
 pypy3 tends to be a little faster than python3 but both will work. GNU
 parallel may also be used to speed up the conversion.
 
 ```sh
 # from data/wgbs/bulk directory
-parallel pypy3 ../../../scripts/bed2cov.py {} '>' bismark/canary/{/.} ::: biscuit/canary/*mergecg.bed.gz
+parallel pypy3 ../../../scripts/biscuit2cov.py {} '>' bismark/canary/{/.} ::: biscuit/canary/*mergecg.bed.gz
 parallel tabix -b 2 -e 3 {} ::: bismark/canary/*mergecg.bed.gz
 rename 's/.bed.gz/.cov.gz' bismark/canary/*mergecg.bed.gz
 
 # from data/wgbs/sc directory
-parallel pypy3 ../../../scripts/bed2cov.py {} '>' bismark/snmcseq2/{/.} ::: biscuit/canary/*.bed.gz
+parallel pypy3 ../../../scripts/biscuit2cov.py {} '>' bismark/snmcseq2/{/.} ::: biscuit/canary/*.bed.gz
 parallel tabix -b 2 -e 3 {} ::: bismark/canary/*.bed.gz
 rename 's/.bed.gz/.cov.gz' bismark/snmcseq2/*.bed.gz
 ```
