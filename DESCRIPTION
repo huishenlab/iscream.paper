@@ -21,6 +21,5 @@ Imports:
     tidyr,
     GenomicRanges,
     Rsamtools,
-    BSgenome.Hsapiens.UCSC.hg38,
     rmarkdown
 
