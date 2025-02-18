@@ -9,10 +9,9 @@ benchmark_summarize_regions(
   regions,
   min_iterations = 3,
   max_iterations = 10,
-  raw = TRUE,
-  n_regions = c(1, 100, 500, 1000, 5000, 10000),
-  n_files = round(10^c(0, 1, 1.4, 1.7, 1.875, 2)),
-  n_threads = 2^c(0, 1, 2, 3, 4),
+  n_regions = 30000,
+  n_files = c(1, 10, 50, 100),
+  n_threads = c(1, 16),
   outfile = NULL
 )
 }
