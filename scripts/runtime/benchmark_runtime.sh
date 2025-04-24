@@ -6,6 +6,4 @@
 #SBATCH -o slurm-%x-%j.out
 #SBATCH -e slurm-%x-%j.err
 
-module load bbc2/htslib/htslib-1.20
-
 Rscript "scripts/runtime/benchmark_$1.r"
