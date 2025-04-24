@@ -2,3 +2,8 @@ data/wgbs/*
 *.gz
 *.gz.*
 *.pdf
+*.html
+*.docx
+data/
+.direnv
+.envrc
