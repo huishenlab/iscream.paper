@@ -39,7 +39,7 @@ benchmark_summarize_regions <- function(
     thread_count = n_threads,
     {
       bench::mark(
-        summarize_regions(bedfiles[1:file_count], regions[1:region_count], nthreads = thread_count),
+        summarize_meth_regions(bedfiles[1:file_count], regions[1:region_count], nthreads = thread_count),
         min_iterations = min_iterations,
         check = F
       )

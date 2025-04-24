@@ -34,7 +34,7 @@ benchmark_tabix <- function(
     {
       gr <- GRanges(regions[1:region_count])
       bench::mark(
-        iscream = tabix(bedfile, regions[1:region_count], raw = raw),
+        iscream = tabix(bedfile, regions[1:region_count], aligner = "biscuit", raw = raw),
         Rsamtools = scanTabix(bedfile, param = gr),
         min_iterations = min_iterations,
         max_iterations = max_iterations,

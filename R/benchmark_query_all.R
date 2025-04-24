@@ -1,4 +1,4 @@
-#' Benchmark iscream::query_all on varying region, thread and file counts
+#' Benchmark iscream::make_bsseq_mat on varying region, thread and file counts
 #'
 #' @param bedfiles A vector of bedfiles to run tests on
 #' @param regions A vector of regions to query from
@@ -18,7 +18,7 @@
 #' @importFrom tidyr unnest
 #' @import iscream
 #' @export
-benchmark_query_all <- function(
+benchmark_make_bsseq_mat <- function(
   bedfiles,
   regions,
   min_iterations = 3,
@@ -37,20 +37,20 @@ benchmark_query_all <- function(
     stop("Too few bedfiles provided - change the benchmarked `n_files`")
   }
 
-  query_all_benchmark <- bench::press(
+  bsseq_mat_benchmark <- bench::press(
     region_count = n_regions,
     file_count = n_files,
     thread_count = n_threads,
     {
       bench::mark(
-        sort(do.call(BSseq, query_all(bedfiles[1:file_count], regions[1:region_count], nthreads = thread_count, sparse = sparse))),
+        sort(do.call(BSseq, make_bsseq_mat(bedfiles[1:file_count], regions[1:region_count], nthreads = thread_count, sparse = sparse))),
         min_iterations = min_iterations,
         check = F
       )
     }
   )
 
-  bm_unwrapped <- setDT(query_all_benchmark |> unnest(c(time, gc)))
+  bm_unwrapped <- setDT(bsseq_mat_benchmark |> unnest(c(time, gc)))
   benchmark <- (
     bm_unwrapped[gc != "None"][, .(expression, thread_count, file_count, time, region_count)]
     [, thread_count := as.factor(thread_count)]
