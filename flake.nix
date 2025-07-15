@@ -2,8 +2,9 @@
   description = "Flake to get iscream manuscript environment";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.iscream.url = "github:huishenlab/iscream";
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, iscream }:
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
 
@@ -16,28 +17,6 @@
         htslib
       ];
 
-      iscream = pkgs.rPackages.buildRPackage {
-        name = "iscream";
-        src = pkgs.fetchFromGitHub {
-          owner = "huishenlab";
-          repo = "iscream";
-          rev = "5a50ede83761c793c8f8b981f9c5bc6bf9d337bf";
-          sha256 = "l9bwXkYTlMSsA0YGB7dWWVd82RtykCW9upcBXcz7Tfw=";
-        };
-        nativeBuildInputs = with pkgs; [ htslib pkg-config ];
-        propagatedBuildInputs = with pkgs.rPackages; [
-          Matrix
-          data_table
-          parallelly
-          stringfish
-          Rcpp
-          RcppArmadillo
-          RcppProgress
-          RcppSpdlog
-          Rhtslib
-        ];
-      };
-
       rlibs = with pkgs.rPackages; [
         bench
         biscuiteer
@@ -45,7 +24,6 @@
         dplyr
         GenomicRanges
         ggplot2
-        iscream
         patchwork
         RcppTOML
         Rsamtools
@@ -59,6 +37,7 @@
   in {
     devShells.default = pkgs.mkShell {
       nativeBuildInputs = [
+        iscream.packages.${system}.default
         pkgsDeps
         rlibs
       ];
