@@ -9,7 +9,6 @@ benchmark_tabix(
   regions,
   min_iterations = 5,
   max_iterations = 10,
-  raw = TRUE,
   n_regions = c(1, 100, 500, 1000, 5000, 10000, 30000),
   outfile = NULL
 )
@@ -22,8 +21,6 @@ benchmark_tabix(
 \item{min_iterations}{The min iterations for bench::mark to run}
 
 \item{max_iterations}{The max iterations for bench::mark to run}
-
-\item{raw}{Whether to return raw strings in a named list as Rsamtools::scanTabix does}
 
 \item{n_regions}{A vector of region counts to benchmark}
 
