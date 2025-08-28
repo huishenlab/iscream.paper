@@ -7,9 +7,9 @@
 plot_bsseq(
   benchmark,
   files_or_regions = "files",
-  other_max_count = 10,
+  other_max_count = 10000,
   linewidth = 0.6,
-  dot_size = 0.5,
+  dot_size = 1,
   alpha = 0.8,
   outfile = NULL
 )
