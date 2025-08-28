@@ -1,6 +1,6 @@
-#' Plot iscream::query_all - Rsamtools::scanTabix benchmark
+#' Plot iscream::make_bsseq_mat - Rsamtools::scanTabix benchmark
 #'
-#' @param query_all The benchmark to plot (from `benchmark_query_all`)
+#' @param mat_benchmark The benchmark to plot (from `benchmark_make_bsseq_mat`)
 #' @param linewidth The linewidth to use for the mean runtime line
 #' @param dot_size The size for the jitter runtime points
 #' @param alpha The alpha level for the points
@@ -10,29 +10,40 @@
 #' @importFrom bench mark
 #' @importFrom GenomicRanges GRanges
 #' @importFrom Rsamtools scanTabix
-#' @importFrom iscream query_all
+#' @importFrom iscream make_mat
 #' @importFrom ggplot2 ggplot aes geom_jitter stat_summary labs expand_limits scale_color_manual theme_bw facet_grid
 #' @export
-plot_query_all <- function(
-  query_all_benchmark,
+plot_make_mat <- function(
+  mat_benchmark,
   linewidth = 1,
   dot_size = 0.5,
   alpha = 0.8,
   outfile = NULL
 ) {
-
-  if ('exp_type' %in% colnames(query_all_benchmark)) {
-    p <- ggplot(query_all_benchmark, aes(x = region_count, y = time, shape = exp_type)) +
+  if ('exp_type' %in% colnames(mat_benchmark)) {
+    p <- ggplot(
+      mat_benchmark,
+      aes(x = region_count, y = time, shape = exp_type)
+    ) +
       stat_summary(
-        aes(y = time, group = interaction(thread_count, exp_type), linetype = exp_type),
+        aes(
+          y = time,
+          group = interaction(thread_count, exp_type),
+          linetype = exp_type
+        ),
         fun = mean,
         geom = "line",
         linewidth = linewidth,
       ) +
       facet_grid(file_count ~ thread_count, labeller = 'label_both') +
-      labs(y = "Runtime (seconds)", x = "No. of regions", shape = "Experiment type", linetype = "Experiment type")
+      labs(
+        y = "Runtime (seconds)",
+        x = "No. of regions",
+        shape = "Experiment type",
+        linetype = "Experiment type"
+      )
   } else {
-    p <- ggplot(query_all_benchmark, aes(x = region_count, y = time)) +
+    p <- ggplot(mat_benchmark, aes(x = region_count, y = time)) +
       stat_summary(
         aes(y = time, group = thread_count),
         fun = mean,
@@ -53,4 +64,3 @@ plot_query_all <- function(
 
   p
 }
-
