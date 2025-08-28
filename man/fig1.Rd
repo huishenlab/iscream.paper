@@ -4,10 +4,19 @@
 \alias{fig1}
 \title{Plot Fig 1}
 \usage{
-fig1(threads = c(1, 16), legend_position = "bottom", outfile = NULL)
+fig1(
+  threads = c(1, 16),
+  legend_position = "bottom",
+  dotsize = 1,
+  outfile = NULL
+)
 }
 \arguments{
+\item{threads}{thread count}
+
 \item{legend_position}{Where to position the legend in the figure}
+
+\item{dotsize}{Size of points}
 
 \item{outfile}{Where to write the plot to file}
 }
