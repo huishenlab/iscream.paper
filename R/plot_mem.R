@@ -6,7 +6,6 @@
 #' scale_color_manual theme_bw scale_fill_brewer
 #' @export
 plot_mem <- function(peak = TRUE, sc = TRUE) {
-
   iscream_results <- iscream_run_conf$results$query_all
   summarize_regions_results <- iscream_run_conf$results$summarize_regions
   bsseq_results <- iscream_run_conf$results$bsseq
@@ -28,7 +27,9 @@ plot_mem <- function(peak = TRUE, sc = TRUE) {
   iscream_nobs[, package := "iscream sparse"]
   biscuiteer[, package := "biscuiteer"]
 
-  plot_data <- rbind(bsseq, iscream, biscuiteer, iscream_nobs)[, rep := as.factor(rep)]
+  plot_data <- rbind(bsseq, iscream, biscuiteer, iscream_nobs)[,
+    rep := as.factor(rep)
+  ]
   plot_data[, peak_mem := max(memory), by = .(rep, package)]
 
   if (peak) {
@@ -48,11 +49,11 @@ plot_mem <- function(peak = TRUE, sc = TRUE) {
         fun = mean,
         geom = "line",
         linewidth = 0.5,
-        show.legend = TRUE
+        show.legend = TRUE,
+        alpha = 0.6
       ) +
       labs(x = "Time (seconds)", y = "Memory usage (GiB)") +
-      theme_bw() + package_colors
+      theme_bw() +
+      package_colors
   }
-
-
 }
