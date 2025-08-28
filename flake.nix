@@ -34,7 +34,14 @@
         roxygen2
         rmarkdown
       ];
+      iscream_paper = pkgs.rPackages.buildRPackage {
+        name = "iscream.paper";
+        src = self;
+        nativeBuildInputs = pkgsDeps;
+        propagatedBuildInputs = rlibs;
+      };
   in {
+    packages.default = iscream_paper;
     devShells.default = pkgs.mkShell {
       nativeBuildInputs = [
         iscream.packages.${system}.default
