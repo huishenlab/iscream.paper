@@ -12,11 +12,13 @@ plot_tabix <- function(
   tabix_benchmark,
   linewidth = 1,
   dot_size = 1,
-  alpha = 0.7,
+  alpha = 0.5,
   outfile = NULL
 ) {
-
-  p <- ggplot(tabix_benchmark, aes(x = region_count, y = time, color = package)) +
+  p <- ggplot(
+    tabix_benchmark,
+    aes(x = region_count, y = time, color = package)
+  ) +
     stat_summary(
       aes(y = time, group = package),
       fun = mean,

@@ -8,7 +8,7 @@ plot_tabix(
   tabix_benchmark,
   linewidth = 1,
   dot_size = 1,
-  alpha = 0.7,
+  alpha = 0.5,
   outfile = NULL
 )
 }
