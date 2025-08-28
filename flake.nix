@@ -2,7 +2,7 @@
   description = "Flake to get iscream manuscript environment";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.iscream.url = "github:huishenlab/iscream";
+  inputs.iscream.url = "github:huishenlab/iscream/dev";
 
   outputs = { self, nixpkgs, flake-utils, iscream }:
     flake-utils.lib.eachDefaultSystem (system: let
