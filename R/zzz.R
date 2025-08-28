@@ -22,30 +22,38 @@
 
   non_existent <- which(!iscream_datasets$exists)
 
-  packageStartupMessage(paste0("Got dataset config from '", config_file, "' and may be found in the `iscream_run_conf` object"))
-  packageStartupMessage(paste("Experiment types:", paste(exp_types, collapse = ", ")))
+  packageStartupMessage(paste0(
+    "Got dataset config from '",
+    config_file,
+    "' and may be found in the `iscream_run_conf` object"
+  ))
+  packageStartupMessage(paste(
+    "Experiment types:",
+    paste(exp_types, collapse = ", ")
+  ))
   packageStartupMessage(paste("Aligners:", paste(aligners, collapse = ", ")))
   packageStartupMessage(paste("Datasets:", paste(datasets, collapse = ", ")))
   if (length(non_existent) > 0) {
     packageStartupMessage(paste(
       "The following dataset directories do not exist:",
       paste(iscream_datasets$dataset_path[non_existent], collapse = ", ")
-    )
-    )
+    ))
   }
   packageStartupMessage("See `iscream_datasets` for available datasets")
 
-  package_colors <<- scale_color_manual(values = c(
-    "BSseq" = "#0072b2",
-    "biscuiteer" = "#e69f00",
-    "iscream" = "black",
-    "iscream sparse" = "gray40",
-    "Rsamtools" = "#009e73",
-    "methrix" = "#D55E00"
-  ), drop = FALSE)
+  package_colors <<- scale_color_manual(
+    values = c(
+      "BSseq" = "#0072b2",
+      "biscuiteer" = "#e69f00",
+      "iscream" = "black",
+      "iscream sparse" = "coral4",
+      "Rsamtools" = "#009e73",
+      "methrix" = "#D55E00"
+    ),
+    drop = FALSE
+  )
 
   packageStartupMessage("Setting up result dirs")
   dir.create("data/results/benchmarks", recursive = TRUE)
   dir.create("data/results/figures")
-
 }
