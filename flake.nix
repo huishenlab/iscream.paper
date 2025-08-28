@@ -18,6 +18,7 @@
       ];
 
       rlibs = with pkgs.rPackages; [
+        iscream.packages.${system}.default
         bench
         biscuiteer
         cowplot
@@ -40,14 +41,15 @@
         nativeBuildInputs = pkgsDeps;
         propagatedBuildInputs = rlibs;
       };
+      rvenv = pkgs.rWrapper.override {
+        packages = pkgsDeps ++ rlibs;
+      };
   in {
     packages.default = iscream_paper;
     devShells.default = pkgs.mkShell {
-      nativeBuildInputs = [
-        iscream.packages.${system}.default
-        pkgsDeps
-        rlibs
-      ];
+      buildInputs = [ pkgsDeps rlibs iscream.packages.${system}.default ];
+      inputsFrom = pkgs.lib.singleton iscream_paper;
+      packages = pkgs.lib.singleton rvenv;
       shellHook = ''
         mkdir -p "$HOME/.R"
         export R_LIBS_USER="$HOME/.R"
