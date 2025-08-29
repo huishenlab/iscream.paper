@@ -6,7 +6,7 @@
 #SBATCH -o slurm-%x-%j.out
 #SBATCH -e slurm-%x-%j.err
 
-module load bbc2/htslib/htslib-1.20
+module load bbc2/htslib/htslib-1.22
 
 sleep_time=1
 nohup bash scripts/memory/track.sh $sleep_time > $2 2>&1 &

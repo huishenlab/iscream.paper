@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-module load own/htslib/htslib-1.21
+module load bbc2/htslib/htslib-1.22
 
 export NAME="tabix"; sbatch -J "$NAME" scripts/runtime/benchmark_runtime.sh "$NAME" &
 sleep 1
