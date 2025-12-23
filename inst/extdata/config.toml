@@ -11,6 +11,9 @@ dmrs.file = "data/references/canary_dmrs.bed"
 bsseq_sc_loci = "data/references/bsseq_sc_cpg_loci.Rds"
 bsseq_bulk_loci = "data/references/bsseq_bulk_cpg_loci.Rds"
 
+[datasets]
+atac = "data/ct/GSE157637_fragments.tsv.gz"
+
 [datasets.wgbs]
 
 [datasets.wgbs.bulk]
@@ -30,6 +33,25 @@ bulk.figure = "data/results/figures/tabix_bulk.pdf"
 
 combined.data = "data/results/benchmarks/tabix_combined.csv"
 combined.figure = "data/results/figures/tabix_combined.pdf"
+
+atac.data = "data/results/benchmarks/tabix_atac.csv"
+atac.figure = "data/results/figures/tabix_atac.pdf"
+
+[results.bedtoolsr]
+sc.data = "data/results/benchmarks/bedtoolsr_sc.csv"
+sc.figure = "data/results/figures/bedtoolsr_sc.pdf"
+
+bulk.data = "data/results/benchmarks/bedtoolsr_bulk.csv"
+bulk.figure = "data/results/figures/bedtoolsr_bulk.pdf"
+
+combined.data = "data/results/benchmarks/bedtoolsr_combined.csv"
+combined.figure = "data/results/figures/bedtoolsr_combined.pdf"
+
+sc_genes.data = "data/results/benchmarks/bedtoolsr_sc.csv"
+sc_genes.figure = "data/results/figures/bedtoolsr_sc.pdf"
+
+bulk_genes.data = "data/results/benchmarks/bedtoolsr_bulk.csv"
+bulk_genes.figure = "data/results/figures/bedtoolsr_bulk.pdf"
 
 [results.bsseq]
 sc.data = "data/results/benchmarks/bsseq_sc.csv"
