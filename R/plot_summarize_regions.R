@@ -20,30 +20,40 @@ plot_summarize_regions <- function(
   alpha = 0.8,
   outfile = NULL
 ) {
-
   if ('exp_type' %in% colnames(summarize_regions_benchmark)) {
-    p <- ggplot(summarize_regions_benchmark, aes(x = region_count, y = time, shape = exp_type)) +
+    p <- ggplot(
+      summarize_regions_benchmark,
+      aes(x = region_count, y = time, shape = exp_type)
+    ) +
+      geom_jitter() +
       stat_summary(
-        aes(y = time, group = interaction(thread_count, exp_type), linetype = exp_type),
+        aes(y = time, group = exp_type, linetype = exp_type, color = package),
         fun = mean,
         geom = "line",
         linewidth = linewidth,
       ) +
-      facet_grid(file_count ~ thread_count, labeller = 'label_both') +
-      labs(y = "Runtime (seconds)", x = "No. of regions", shape = "Experiment type", linetype = "Experiment type")
+      labs(
+        y = "Runtime (seconds)",
+        x = "No. of regions",
+        shape = "Experiment type",
+        linetype = "Experiment type"
+      )
   } else {
-    p <- ggplot(summarize_regions_benchmark, aes(x = region_count, y = time)) +
+    p <- ggplot(
+      summarize_regions_benchmark,
+      aes(x = region_count, y = time, color = package)
+    ) +
+      geom_jitter() +
       stat_summary(
-        aes(y = time, group = thread_count),
+        aes(y = time, group = package),
         fun = mean,
         geom = "line",
         linewidth = linewidth,
       ) +
-      facet_grid(file_count ~ thread_count, labeller = 'label_both')
       labs(y = "Runtime (seconds)", x = "No. of regions")
   }
 
-  p <- p + geom_jitter(alpha = alpha) + expand_limits(y = 0) + theme_bw()
+  p <- p + expand_limits(y = 0) + package_colors + theme_bw()
 
   if (!is.null(outfile)) {
     pdf(outfile)

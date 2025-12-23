@@ -48,7 +48,7 @@
       "iscream" = "black",
       "iscream sparse" = "coral4",
       "Rsamtools" = "#009e73",
-      "methrix" = "#D55E00"
+      "bedtoolsr" = "#D55E00"
     ),
     drop = FALSE
   )

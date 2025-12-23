@@ -5,20 +5,21 @@
 \title{Benchmark iscream::summarize regions on varying region, thread and file counts}
 \usage{
 benchmark_summarize_regions(
-  bedfiles,
-  regions,
+  bedfile,
+  regions_file,
+  sfun,
   min_iterations = 3,
   max_iterations = 10,
   n_regions = 30000,
-  n_files = c(1, 10, 50, 100),
-  n_threads = c(1, 16),
   outfile = NULL
 )
 }
 \arguments{
-\item{bedfiles}{A vector of bedfiles to run tests on}
+\item{bedfile}{A bedfile to run test on}
 
-\item{regions}{A vector of regions to query from}
+\item{regions_file}{A bed file containing the regions of interest}
+
+\item{sfun}{The functions to use}
 
 \item{min_iterations}{The min iterations for bench::mark to run}
 
@@ -26,13 +27,11 @@ benchmark_summarize_regions(
 
 \item{n_regions}{A vector of region counts to benchmark}
 
+\item{outfile}{Optional file to write the benchmark to}
+
 \item{n_files}{A vector of file counts to benchmark}
 
 \item{n_threads}{A vector of thread counts to benchmark}
-
-\item{outfile}{Optional file to write the benchmark to}
-
-\item{threads}{The number of threads to run on}
 }
 \description{
 Benchmark iscream::summarize regions on varying region, thread and file counts
