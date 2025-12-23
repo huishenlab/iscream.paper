@@ -8,6 +8,16 @@
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
 
+      bedtoolsr = pkgs.rPackages.buildRPackage {
+        name = "bedtoolsr";
+        src = pkgs.fetchFromGitHub {
+          owner = "PhanstielLab";
+          repo = "bedtoolsr";
+          rev = "b601e51ba12bae66618707b389d9d7287561877b";
+          sha256 = "YJuLXp+z3RwwGedBGVaXy8+SUH4E6eXOYc7wwPBrpH4=";
+        };
+      };
+
       htslib = pkgs.htslib.overrideAttrs (finalAttrs: previousAttrs: {
         buildInputs = previousAttrs.buildInputs ++ [ pkgs.libdeflate ];
       });
@@ -15,10 +25,12 @@
         R
         pypy3
         htslib
+        bedtools
       ];
 
       rlibs = with pkgs.rPackages; [
         iscream.packages.${system}.default
+        bedtoolsr
         bench
         biscuiteer
         cowplot
