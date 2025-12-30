@@ -25,7 +25,11 @@ benchmark_summarize_regions <- function(
   n_regions = 30000,
   outfile = NULL
 ) {
-  regions <- fread(regions_file, col.names = c("chr", "start", "end")) |>
+  regions <- fread(
+    regions_file,
+    col.names = c("chr", "start", "end"),
+    select = seq_len(3)
+  ) |>
     create_regions()
   if (length(regions) < max(n_regions)) {
     stop("Too few regions provided - change the benchmarked `n_regions`")
