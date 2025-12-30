@@ -47,11 +47,11 @@ bulk.figure = "data/results/figures/bedtoolsr_bulk.pdf"
 combined.data = "data/results/benchmarks/bedtoolsr_combined.csv"
 combined.figure = "data/results/figures/bedtoolsr_combined.pdf"
 
-sc_genes.data = "data/results/benchmarks/bedtoolsr_sc.csv"
-sc_genes.figure = "data/results/figures/bedtoolsr_sc.pdf"
+sc_genes.data = "data/results/benchmarks/bedtoolsr_sc_genes.csv"
+sc_genes.figure = "data/results/figures/bedtoolsr_sc_genes.pdf"
 
-bulk_genes.data = "data/results/benchmarks/bedtoolsr_bulk.csv"
-bulk_genes.figure = "data/results/figures/bedtoolsr_bulk.pdf"
+bulk_genes.data = "data/results/benchmarks/bedtoolsr_bulk_genes.csv"
+bulk_genes.figure = "data/results/figures/bedtoolsr_bulk_genes.pdf"
 
 [results.bsseq]
 sc.data = "data/results/benchmarks/bsseq_sc.csv"
