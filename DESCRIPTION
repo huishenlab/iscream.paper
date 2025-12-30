@@ -10,7 +10,7 @@ Description: Contains the scripts used to produce the data and figures for the
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Imports:
     bench,
     data.table,
@@ -22,4 +22,3 @@ Imports:
     GenomicRanges,
     Rsamtools,
     rmarkdown
-
