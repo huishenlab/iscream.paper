@@ -23,11 +23,16 @@ plot_summarize_regions <- function(
   if ('exp_type' %in% colnames(summarize_regions_benchmark)) {
     p <- ggplot(
       summarize_regions_benchmark,
-      aes(x = region_count, y = time, shape = exp_type)
+      aes(x = region_count, y = time, color = package, shape = exp_type)
     ) +
       geom_jitter() +
       stat_summary(
-        aes(y = time, group = exp_type, linetype = exp_type, color = package),
+        aes(
+          y = time,
+          group = interaction(package, exp_type),
+          linetype = exp_type,
+          color = package
+        ),
         fun = mean,
         geom = "line",
         linewidth = linewidth,
