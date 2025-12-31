@@ -86,9 +86,8 @@ plot_tabix_per_record <- function() {
       linewidth = 0.6,
     ) +
     labs(
-      title = "Runtime (seconds)",
+      y = "Runtime (seconds)",
       x = "No. of records returned",
-      y = NULL,
       shape = "Experiment type",
       linetype = "Experiment type",
       color = "Package"
