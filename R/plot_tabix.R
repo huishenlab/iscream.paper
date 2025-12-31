@@ -99,3 +99,63 @@ plot_tabix_per_record <- function() {
       plot.margin = margin(1, 10, 1, 1, "pt")
     )
 }
+
+#' Plot iscream::tabix - benchmarks against the shell tabix
+#'
+#' @importFrom ggplot2 ggplot aes labs geom_bar
+#' @export
+plot_tabix_shell <- function() {
+  tabix_exec_sc <- fread(
+    iscream_run_conf$results$tabix_shell$sc_exec$data,
+    col.names = "time"
+  )[, .(package = "tabix shell", region_count = 5000, time, record_count = NA)]
+  tabix_exec_bulk <- fread(
+    iscream_run_conf$results$tabix_shell$bulk_exec$data,
+    col.names = "time"
+  )[, .(package = "tabix shell", region_count = 5000, time, record_count = NA)]
+  tabix_shell_sc <- fread(iscream_run_conf$results$tabix_shell$sc_shell$data)
+  tabix_shell_bulk <- fread(
+    iscream_run_conf$results$tabix_shell$bulk_shell$data
+  )
+  tabix_sc <- fread(iscream_run_conf$results$tabix_shell$sc$data)
+  tabix_bulk <- fread(iscream_run_conf$results$tabix_shell$bulk$data)
+
+  tabix_benchmark <- rbind(
+    tabix_exec_sc[, exp_type := "single-cell"],
+    tabix_exec_bulk[, exp_type := "bulk"],
+    tabix_shell_sc[, exp_type := "single-cell"][
+      package == "iscream",
+      package := "iscream shell"
+    ],
+    tabix_shell_bulk[, exp_type := "bulk"][
+      package == "iscream",
+      package := "iscream shell"
+    ],
+    tabix_sc[, exp_type := "single-cell"][
+      package == "iscream",
+      package := "iscream htslib"
+    ],
+    tabix_bulk[, exp_type := "bulk"][
+      package == "iscream",
+      package := "iscream htslib"
+    ]
+  )
+
+  pd <- tabix_benchmark[,
+    package := factor(
+      package,
+      levels = c(
+        "tabix shell",
+        "iscream shell",
+        "iscream htslib",
+        "Rsamtools"
+      )
+    )
+  ]
+  ggplot(pd, aes(x = package, y = time)) +
+    geom_bar(stat = "summary", fun = "mean", position = "dodge") +
+    facet_grid(cols = vars(exp_type)) +
+    labs(x = "Query method", y = "Runtime (seconds)") +
+    theme_bw() +
+    theme(axis.text.x = element_text(size = 7))
+}
