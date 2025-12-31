@@ -42,6 +42,7 @@
         Rsamtools
         stringfish
         tidyr
+        Hmisc
 
         # pkg deps
         roxygen2

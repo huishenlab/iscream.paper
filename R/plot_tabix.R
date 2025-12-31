@@ -88,7 +88,10 @@ plot_tabix_per_record <- function() {
     labs(
       title = "Runtime (seconds)",
       x = "No. of records returned",
-      y = NULL
+      y = NULL,
+      shape = "Experiment type",
+      linetype = "Experiment type",
+      color = "Package"
     ) +
     geom_jitter(alpha = 0.6, size = 2) +
     package_colors +
@@ -155,6 +158,12 @@ plot_tabix_shell <- function() {
   ggplot(pd, aes(x = package, y = time)) +
     geom_bar(stat = "summary", fun = "mean", position = "dodge") +
     facet_grid(cols = vars(exp_type)) +
+    stat_summary(
+      fun.data = "mean_sdl",
+      geom = "errorbar",
+      width = 0.1,
+      position = position_dodge2(width = 0.9)
+    ) +
     labs(x = "Query method", y = "Runtime (seconds)") +
     theme_bw() +
     theme(axis.text.x = element_text(size = 7))

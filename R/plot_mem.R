@@ -33,8 +33,14 @@ plot_mem <- function(peak = TRUE, sc = TRUE) {
   plot_data[, peak_mem := max(memory), by = .(rep, package)]
 
   if (peak) {
-    ggplot(plot_data, aes(x = package, y = peak_mem, fill = rep)) +
-      geom_bar(stat = 'identity', position = 'dodge') +
+    ggplot(plot_data, aes(x = package, y = peak_mem)) +
+      geom_bar(stat = "summary", fun = "mean", position = "dodge") +
+      stat_summary(
+        fun.data = "mean_sdl",
+        geom = "errorbar",
+        width = 0.1,
+        position = position_dodge2(width = 0.9)
+      ) +
       theme_bw() +
       scale_fill_brewer(palette = "Dark2") +
       labs(x = "Package", y = "Peak memory used (GiB)")
