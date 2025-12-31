@@ -37,6 +37,16 @@ combined.figure = "data/results/figures/tabix_combined.pdf"
 atac.data = "data/results/benchmarks/tabix_atac.csv"
 atac.figure = "data/results/figures/tabix_atac.pdf"
 
+[results.tabix_shell]
+sc.data = "data/results/benchmarks/tabix_htslib_sc.csv"
+bulk.data = "data/results/benchmarks/tabix_htslib_bulk.csv"
+
+sc_shell.data = "data/results/benchmarks/tabix_shell_sc.csv"
+bulk_shell.data = "data/results/benchmarks/tabix_shell_bulk.csv"
+
+sc_exec.data = "data/results/benchmarks/tabix_exec_sc.txt"
+bulk_exec.data = "data/results/benchmarks/tabix_exec_bulk.txt"
+
 [results.bedtoolsr]
 sc.data = "data/results/benchmarks/bedtoolsr_sc.csv"
 sc.figure = "data/results/figures/bedtoolsr_sc.pdf"
