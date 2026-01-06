@@ -41,7 +41,8 @@ plot_summarize_regions <- function(
         y = "Runtime (seconds)",
         x = "No. of regions",
         shape = "Experiment type",
-        linetype = "Experiment type"
+        linetype = "Experiment type",
+        color = "Package"
       )
   } else {
     p <- ggplot(
