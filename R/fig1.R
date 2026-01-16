@@ -22,10 +22,8 @@ fig1 <- function(
   biscuiteer_results <- iscream_run_conf$results$biscuiteer
 
   # Figure 1 A
-  tabix_sc <- fread(tabix_results$sc$data)
-  tabix_bulk <- fread(tabix_results$bulk$data)
-  tabix_combined <- join_exp_types(tabix_sc, tabix_bulk)
-  tabix_combined.plot <- plot_tabix(tabix_combined, dot_size = dotsize) +
+  tabix_atac <- fread(tabix_results$atac$data)
+  tabix_combined.plot <- plot_tabix(tabix_atac, dot_size = dotsize) +
     guides(color = 'none')
 
   # Figure 1 B
