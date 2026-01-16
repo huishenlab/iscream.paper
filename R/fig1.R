@@ -20,6 +20,7 @@ fig1 <- function(
   summarize_regions_results <- iscream_run_conf$results$summarize_regions
   bsseq_results <- iscream_run_conf$results$bsseq
   biscuiteer_results <- iscream_run_conf$results$biscuiteer
+  bedtoolsr_results <- iscream_run_conf$results$bedtoolsr
 
   # Figure 1 A
   tabix_atac <- fread(tabix_results$atac$data)
@@ -42,8 +43,11 @@ fig1 <- function(
   ]
   all_bsseq_sc$package <- factor(
     all_bsseq_sc$package,
-    levels = c("Rsamtools", "biscuiteer", "BSseq", "iscream")
+    levels = c("Rsamtools", "bedtoolsr", "biscuiteer", "BSseq", "iscream")
   )
+
+  bedtools_sc <- fread(bedtoolsr_results$bulk$data)
+  bedtoolsr_plot <- plot_summarize_regions(bedtools_sc) + guides(color = "none")
 
   all_bsseq_sc.plot_data <- all_bsseq_sc[thread_count %in% threads]
   all_bsseq_sc.plot <- plot_bsseq(
@@ -65,17 +69,20 @@ fig1 <- function(
   ]
   all_bsseq_bulk <- rbind(bsseq_bulk, query_all_bulk, biscuiteer_bulk)
   all_bsseq_bulk.plot_data <- all_bsseq_bulk[thread_count %in% threads]
+  all_bsseq_bulk$package <- factor(
+    all_bsseq_bulk$package,
+    levels = c("Rsamtools", "bedtoolsr", "biscuiteer", "BSseq", "iscream")
+  )
   all_bsseq_bulk.plot <- plot_bsseq(
     all_bsseq_bulk,
     files_or_regions = "files",
     other_max_count = 10000,
     alpha = 0.5,
     dot_size = dotsize
-  ) +
-    guides(color = 'none')
+  )
 
   p <- tabix_combined.plot +
-    all_bsseq_sc.plot +
+    bedtoolsr_plot +
     all_bsseq_bulk.plot +
     plot_annotation(tag_levels = "A") +
     plot_layout(guides = 'collect', widths = c(1, 1, 1)) &
