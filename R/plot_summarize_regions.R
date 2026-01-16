@@ -15,9 +15,9 @@
 #' @export
 plot_summarize_regions <- function(
   summarize_regions_benchmark,
-  linewidth = 1,
+  linewidth = 0.6,
   dot_size = 0.5,
-  alpha = 0.8,
+  alpha = 0.5,
   outfile = NULL
 ) {
   if ('exp_type' %in% colnames(summarize_regions_benchmark)) {
@@ -49,7 +49,7 @@ plot_summarize_regions <- function(
       summarize_regions_benchmark,
       aes(x = region_count, y = time, color = package)
     ) +
-      geom_jitter() +
+      geom_jitter(alpha = alpha) +
       stat_summary(
         aes(y = time, group = package),
         fun = mean,
