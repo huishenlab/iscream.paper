@@ -1,4 +1,4 @@
-#' Plot Fig 1
+#' Plot Fig 2
 #'
 #' @param threads thread count
 #' @param legend_position Where to position the legend in the figure
@@ -9,7 +9,7 @@
 #' @importFrom patchwork plot_layout plot_annotation
 #' @importFrom ggplot2 theme guides theme
 #' @export
-fig1 <- function(
+fig2 <- function(
   threads = c(1, 16),
   legend_position = "bottom",
   dotsize = 1,
@@ -47,7 +47,12 @@ fig1 <- function(
   )
 
   bedtools_sc <- fread(bedtoolsr_results$bulk$data)
-  bedtoolsr_plot <- plot_summarize_regions(bedtools_sc) + guides(color = "none")
+  bedtoolsr_plot <- plot_summarize_regions(
+    bedtools_sc,
+    linewidth = 1,
+    alpha = 0.4
+  ) +
+    guides(color = "none")
 
   all_bsseq_sc.plot_data <- all_bsseq_sc[thread_count %in% threads]
   all_bsseq_sc.plot <- plot_bsseq(

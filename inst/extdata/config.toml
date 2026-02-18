@@ -117,4 +117,4 @@ memory.sc.data = "data/results/benchmarks/mem_summarize_regions_sc.tsv"
 memory.sc.figure = "data/results/figures/mem_summarize_regions_sc.pdf"
 
 [figures]
-fig1 = "data/results/figures/fig1.pdf"
+fig2 = "data/results/figures/fig2.pdf"
