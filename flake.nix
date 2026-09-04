@@ -47,6 +47,7 @@
         # pkg deps
         roxygen2
         rmarkdown
+        devtools
       ];
       iscream_paper = pkgs.rPackages.buildRPackage {
         name = "iscream.paper";
